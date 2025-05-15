@@ -1,16 +1,16 @@
-# Azure Access Token Generator
+# Azure App Roles Assigner
 
-The Azure Access Token Generator (ATG) is a tool that helps you quickly generate Azure access
-tokens for development and testing purposes.
+The Azure App Roles Assigner (ARA) is a powerful tool designed to streamline the process of assigning app roles to applications and managed identities. This tool is especially valuable for managed identities, as the Azure portal currently does not support app role assignments for
+them.
 
 ## Installation
 
-To install the Azure Access Token Generator, you need to have the .NET SDK installed on your system. If you haven't installed it yet, download it from [dotnet.microsoft.com/download](https://dotnet.microsoft.com/download).
+To install the Azure App Roles Assigner, you need to have the .NET SDK installed on your system. If you haven't installed it yet, download it from [dotnet.microsoft.com/download](https://dotnet.microsoft.com/download).
 
 Once you have the .NET SDK installed, open your terminal or command prompt and run the following command:
 
 ```bash
-dotnet tool install azure-access-token-generator -g
+dotnet tool install azure-app-roles-assigner -g
 ```
 
 The `-g` option installs the tool globally, so you can run it from any location on your system.
@@ -20,10 +20,10 @@ The `-g` option installs the tool globally, so you can run it from any location 
 After installing the tool, you can generate Azure access tokens by running the following command:
 
 ```bash
-atg
+ara
 ```
 
-This command will invoke the Azure Access Token Generator in your command line. Follow any prompts or instructions provided by the tool to generate the tokens you need.
+This command will invoke the Azure App Roles Assigner in your command line. Follow any prompts or instructions provided by the tool to generate the tokens you need.
 
 ## Contributing
 
