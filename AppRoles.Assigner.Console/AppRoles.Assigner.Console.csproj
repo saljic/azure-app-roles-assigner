@@ -8,9 +8,11 @@
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>ara</ToolCommandName>
         <PackageId>azure-app-roles-assigner</PackageId>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <Authors>Selmir Aljic</Authors>
-        <RepositoryUrl>https://github.com/saljic/azure-approles-assigner</RepositoryUrl>
-        <Version>0.0.1</Version>
+        <RepositoryUrl>https://github.com/saljic/azure-app-roles-assigner</RepositoryUrl>
+        <Version>0.0.5</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,5 +21,10 @@
       <PackageReference Include="Microsoft.Graph" Version="5.78.0" />
       <PackageReference Include="Spectre.Console" Version="0.50.0" />
     </ItemGroup>
+
+     <ItemGroup>
+       <None Include="../LICENSE" Pack="true" PackagePath="" />
+       <None Include="../README.md" Pack="true" PackagePath="" />
+     </ItemGroup>
 
 </Project>
