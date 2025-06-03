@@ -23,7 +23,7 @@ After installing the tool, you can generate Azure access tokens by running the f
 ara
 ```
 
-This command will invoke the Azure App Roles Assigner in your command line. Follow any prompts or instructions provided by the tool to generate the tokens you need.
+This command will invoke the Azure App Roles Assigner in your command line. Follow any prompts or instructions provided by the tool to assign the app roles.
 
 ## Contributing
 
