@@ -6,7 +6,6 @@ var cancellationTokenSource = new CancellationTokenSource();
 try
 {
     var graphServiceClient = new GraphServiceClientBuilder().Build();
-
     var assigner = new AppRoleAssigner(graphServiceClient);
 
     await assigner.AssignAsync(cancellationTokenSource.Token);

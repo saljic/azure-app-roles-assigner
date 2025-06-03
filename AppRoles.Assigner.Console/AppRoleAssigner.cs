@@ -8,6 +8,8 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
 {
     public async Task AssignAsync(CancellationToken token = default)
     {
+        AnsiConsole.Clear();
+        
         var applications = await GetApplicationsAsync(token);
         var applicationsWithAppRole = applications.Where(x => x.AppRoles.Any());
 
