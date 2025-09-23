@@ -12,7 +12,6 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <Authors>Selmir Aljic</Authors>
         <RepositoryUrl>https://github.com/saljic/azure-app-roles-assigner</RepositoryUrl>
-        <Version>0.0.6</Version>
     </PropertyGroup>
 
     <ItemGroup>
