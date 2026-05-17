@@ -11,9 +11,9 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
         AnsiConsole.Clear();
         
         var applications = await GetApplicationsAsync(token);
-        var applicationsWithAppRole = applications.Where(x => x.AppRoles.Any());
+        var applicationsWithAppRole = applications.Where(x => x.AppRoles!.Any());
 
-        var filteredApplications = FilterWithFuzzySearch(applicationsWithAppRole.Select(x => x.DisplayName).ToArray(), "application containing the app role");
+        var filteredApplications = FilterWithFuzzySearch(applicationsWithAppRole!.Select(x => x.DisplayName!).ToArray(), "application containing the app role");
 
         AnsiConsole.Clear();
 
@@ -39,7 +39,7 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
 
         AnsiConsole.Clear();
 
-        var filteredServicePrincipals = FilterWithFuzzySearch(servicePrincipals.Select(x => x.DisplayName).ToArray(), $"{selectedServicePrincipalType} that needs the app role permission to '{applicationServicePrincipal.DisplayName}'");
+        var filteredServicePrincipals = FilterWithFuzzySearch(servicePrincipals.Select(x => x.DisplayName!).ToArray(), $"{selectedServicePrincipalType} that needs the app role permission to '{applicationServicePrincipal!.DisplayName}'");
 
         AnsiConsole.Clear();
 
@@ -57,14 +57,14 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
 
         var selectedAppRole = AnsiConsole.Prompt(
             new SelectionPrompt<AppRole>()
-                .UseConverter(x => x.DisplayName)
+                .UseConverter(x => x.DisplayName!)
                 .Title("Select the app role to assign: ")
-                .AddChoices(applicationServicePrincipal.AppRoles));
+                .AddChoices(applicationServicePrincipal!.AppRoles!));
 
         var requestBody = new AppRoleAssignment
         {
-            PrincipalId = Guid.Parse(servicePrincipalWhichWillGetPermission.Id),
-            ResourceId = Guid.Parse(applicationServicePrincipal.Id),
+            PrincipalId = Guid.Parse(servicePrincipalWhichWillGetPermission!.Id!),
+            ResourceId = Guid.Parse(applicationServicePrincipal.Id!),
             AppRoleId = selectedAppRole.Id,
         };
 
@@ -98,7 +98,7 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
 
             var pageIterator = PageIterator<ServicePrincipal, ServicePrincipalCollectionResponse>.CreatePageIterator(
                 graphClient,
-                getServicePrincipalsResponse,
+                getServicePrincipalsResponse!,
                 (sp) =>
                 {
                     progress.Increment(0.5);
@@ -131,7 +131,7 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
 
             var pageIterator = PageIterator<Application, ApplicationCollectionResponse>.CreatePageIterator(
                 graphClient,
-                getApplicationsResponse,
+                getApplicationsResponse!,
                 (sp) =>
                 {
                     progress.Increment(0.5);
@@ -153,7 +153,7 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
     }
 
 
-    private async Task<ServicePrincipal> GetServicePrincipalAsync(string displayName, CancellationToken token = default)
+    private async Task<ServicePrincipal?> GetServicePrincipalAsync(string displayName, CancellationToken token = default)
     {
         var getServicePrincipalResponse = await AnsiConsole.Progress().StartAsync(async ctx =>
         {
@@ -169,7 +169,7 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
 
             var pageIterator = PageIterator<ServicePrincipal, ServicePrincipalCollectionResponse>.CreatePageIterator(
                 graphClient,
-                response,
+                response!,
                 (sp) =>
                 {
                     progress.Increment(0.5);
@@ -187,7 +187,7 @@ public sealed class AppRoleAssigner(GraphServiceClient graphClient)
             return servicePrincipals;
         });
 
-        return getServicePrincipalResponse.SingleOrDefault();
+        return getServicePrincipalResponse!.SingleOrDefault();
     }
 
 
